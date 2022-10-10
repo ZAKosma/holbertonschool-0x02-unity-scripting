@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
+    public int health = 5;
     
     public float speed;
 
@@ -54,6 +55,11 @@ public class PlayerController : MonoBehaviour
             score++;
             Debug.Log("Score: " + score);
             GameObject.Destroy(other.gameObject);
+        }
+        else if (other.gameObject.CompareTag("Trap"))
+        {
+            health--;
+            Debug.Log("Health: " + health);
         }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,9 +6,12 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
+    
     public float speed;
 
-    public Rigidbody rb;
+    private int score = 0;
+    
+    private Rigidbody rb;
     
     // Start is called before the first frame update
     void Start()
@@ -41,5 +45,15 @@ public class PlayerController : MonoBehaviour
         }
 
         rb.AddForce(playerMovement);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Pickup"))
+        {
+            score++;
+            Debug.Log("Score: " + score);
+            GameObject.Destroy(other.gameObject);
+        }
     }
 }
